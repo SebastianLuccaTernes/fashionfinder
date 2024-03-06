@@ -14,6 +14,7 @@ struct ContentView: View {
                 .imageScale(.large)
                 .foregroundStyle(.tint)
             Text("This will the the app Fashion Finder")
+            Text("Tobi Stinkt!")
             Text("This is my update")
             Text("Luca stinikt")
 
