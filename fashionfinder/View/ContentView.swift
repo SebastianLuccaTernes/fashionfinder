@@ -14,6 +14,8 @@ struct ContentView: View {
                 .imageScale(.large)
                 .foregroundStyle(.tint)
             Text("This will the the app Fashion Finder")
+            Text("This is my update")
+
         }
         .padding()
     }

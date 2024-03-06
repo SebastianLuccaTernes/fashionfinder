@@ -52,8 +52,10 @@
 		38F5019A2B988145005D25C3 /* fashionfinder */ = {
 			isa = PBXGroup;
 			children = (
+				38F501AD2B9881BE005D25C3 /* Models */,
+				38F501AC2B9881A7005D25C3 /* ViewModels */,
+				38F501AA2B988163005D25C3 /* View */,
 				38F5019B2B988145005D25C3 /* fashionfinderApp.swift */,
-				38F5019D2B988145005D25C3 /* ContentView.swift */,
 				38F5019F2B988147005D25C3 /* Assets.xcassets */,
 				38F501A12B988147005D25C3 /* fashionfinder.entitlements */,
 				38F501A22B988147005D25C3 /* Preview Content */,
@@ -67,6 +69,28 @@
 				38F501A32B988147005D25C3 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		38F501AA2B988163005D25C3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				38F5019D2B988145005D25C3 /* ContentView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		38F501AC2B9881A7005D25C3 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		38F501AD2B9881BE005D25C3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
