@@ -10,19 +10,50 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("This will the the app Fashion Finder")
-            Text("Tobi Stinkt!")
-            Text("This is my update")
-            Text("Luca stinikt")
-
+            HeaderView()
+            Image("yourImageName")
+                .resizable()
+                .scaledToFit()
+            Button(action: {
+                // Aktion für Button 1
+            }) {
+                Text("Button 1")
+            }
+            Button(action: {
+                // Aktion für Button 2
+            }) {
+                Text("Button 2")
+                    
+                
+            }
+            
+            HStack {
+                Button(action: {
+                }) {
+                    Text("Button A")
+                        .padding(.top)
+                }
+                Button(action: {
+                }) {
+                    Text("Button A")
+                        .padding([.top, .leading], 13.0)
+                        
+                }
+            }
         }
-        .padding()
     }
 }
 
-#Preview {
-    ContentView()
+struct HeaderView: View {
+    var body: some View {
+        Text("FashionFinder")
+            .font(.largeTitle)
+            .padding()
+    }
+}
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
 }
