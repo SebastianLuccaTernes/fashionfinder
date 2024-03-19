@@ -14,6 +14,8 @@
 		38F5019E2B988145005D25C3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F5019D2B988145005D25C3 /* ContentView.swift */; };
 		38F501A02B988147005D25C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38F5019F2B988147005D25C3 /* Assets.xcassets */; };
 		38F501A42B988147005D25C3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38F501A32B988147005D25C3 /* Preview Assets.xcassets */; };
+		FCFE6CA82BA8C0E000FCCD2B /* CostumButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFE6CA72BA8C0E000FCCD2B /* CostumButtons.swift */; };
+		FCFE6CAB2BA8D3EF00FCCD2B /* ImageChooseTake.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFE6CAA2BA8D3EF00FCCD2B /* ImageChooseTake.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,9 @@
 		38F5019F2B988147005D25C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		38F501A12B988147005D25C3 /* fashionfinder.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = fashionfinder.entitlements; sourceTree = "<group>"; };
 		38F501A32B988147005D25C3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		FCFE6CA72BA8C0E000FCCD2B /* CostumButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CostumButtons.swift; path = fashionfinder/CostumButtons.swift; sourceTree = SOURCE_ROOT; };
+		FCFE6CA92BA8D31700FCCD2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		FCFE6CAA2BA8D3EF00FCCD2B /* ImageChooseTake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageChooseTake.swift; path = fashionfinder/ImageChooseTake.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +74,7 @@
 		38F5019A2B988145005D25C3 /* fashionfinder */ = {
 			isa = PBXGroup;
 			children = (
+				FCFE6CA92BA8D31700FCCD2B /* Info.plist */,
 				383FF6322B9F900D000F8E03 /* Views */,
 				38F501AD2B9881BE005D25C3 /* Models */,
 				38F501AC2B9881A7005D25C3 /* ViewModels */,
@@ -91,6 +97,7 @@
 		38F501AC2B9881A7005D25C3 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				FCFE6CA72BA8C0E000FCCD2B /* CostumButtons.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -98,6 +105,7 @@
 		38F501AD2B9881BE005D25C3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				FCFE6CAA2BA8D3EF00FCCD2B /* ImageChooseTake.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -174,6 +182,8 @@
 			files = (
 				383FF6362B9F9295000F8E03 /* cropImageView.swift in Sources */,
 				383FF6382B9F92B3000F8E03 /* productListView.swift in Sources */,
+				FCFE6CA82BA8C0E000FCCD2B /* CostumButtons.swift in Sources */,
+				FCFE6CAB2BA8D3EF00FCCD2B /* ImageChooseTake.swift in Sources */,
 				383FF6342B9F926C000F8E03 /* startView.swift in Sources */,
 				38F5019E2B988145005D25C3 /* ContentView.swift in Sources */,
 				38F5019C2B988145005D25C3 /* fashionfinderApp.swift in Sources */,
@@ -310,10 +320,12 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"fashionfinder/Preview Content\"";
-				DEVELOPMENT_TEAM = Z5DZLYT7CL;
+				DEVELOPMENT_TEAM = JD5MBVHK7P;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = fashionfinder/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "$(MARKETING_VERSION)";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -329,14 +341,15 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.2;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = app.fashionfinder;
+				PRODUCT_BUNDLE_IDENTIFIER = app.fashionfinder.bundleID;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -351,10 +364,12 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"fashionfinder/Preview Content\"";
-				DEVELOPMENT_TEAM = Z5DZLYT7CL;
+				DEVELOPMENT_TEAM = JD5MBVHK7P;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = fashionfinder/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "$(MARKETING_VERSION)";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -370,14 +385,15 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.2;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = app.fashionfinder;
+				PRODUCT_BUNDLE_IDENTIFIER = app.fashionfinder.bundleID;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
