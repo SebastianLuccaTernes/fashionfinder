@@ -14,8 +14,8 @@
 		38F5019E2B988145005D25C3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F5019D2B988145005D25C3 /* ContentView.swift */; };
 		38F501A02B988147005D25C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38F5019F2B988147005D25C3 /* Assets.xcassets */; };
 		38F501A42B988147005D25C3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38F501A32B988147005D25C3 /* Preview Assets.xcassets */; };
+		FC9B8D5D2BAA2EE600D89800 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9B8D5C2BAA2EE600D89800 /* ImagePicker.swift */; };
 		FCFE6CA82BA8C0E000FCCD2B /* CostumButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFE6CA72BA8C0E000FCCD2B /* CostumButtons.swift */; };
-		FCFE6CAB2BA8D3EF00FCCD2B /* ImageChooseTake.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFE6CAA2BA8D3EF00FCCD2B /* ImageChooseTake.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,9 +28,9 @@
 		38F5019F2B988147005D25C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		38F501A12B988147005D25C3 /* fashionfinder.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = fashionfinder.entitlements; sourceTree = "<group>"; };
 		38F501A32B988147005D25C3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		FC9B8D5C2BAA2EE600D89800 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = SOURCE_ROOT; };
 		FCFE6CA72BA8C0E000FCCD2B /* CostumButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CostumButtons.swift; path = fashionfinder/CostumButtons.swift; sourceTree = SOURCE_ROOT; };
 		FCFE6CA92BA8D31700FCCD2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		FCFE6CAA2BA8D3EF00FCCD2B /* ImageChooseTake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageChooseTake.swift; path = fashionfinder/ImageChooseTake.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,7 +105,7 @@
 		38F501AD2B9881BE005D25C3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				FCFE6CAA2BA8D3EF00FCCD2B /* ImageChooseTake.swift */,
+				FC9B8D5C2BAA2EE600D89800 /* ImagePicker.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -183,8 +183,8 @@
 				383FF6362B9F9295000F8E03 /* cropImageView.swift in Sources */,
 				383FF6382B9F92B3000F8E03 /* productListView.swift in Sources */,
 				FCFE6CA82BA8C0E000FCCD2B /* CostumButtons.swift in Sources */,
-				FCFE6CAB2BA8D3EF00FCCD2B /* ImageChooseTake.swift in Sources */,
 				383FF6342B9F926C000F8E03 /* startView.swift in Sources */,
+				FC9B8D5D2BAA2EE600D89800 /* ImagePicker.swift in Sources */,
 				38F5019E2B988145005D25C3 /* ContentView.swift in Sources */,
 				38F5019C2B988145005D25C3 /* fashionfinderApp.swift in Sources */,
 			);

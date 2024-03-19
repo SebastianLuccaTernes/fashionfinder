@@ -15,6 +15,7 @@ struct startView: View {
     @State private var showImagePicker = false // Image picker is not shown to user
     @State private var sourceType: UIImagePickerController.SourceType = .photoLibrary // determines the source from which the picker will select images
     @State private var selectedImage: UIImage? // once a image is selected it is here stored
+    @State private var showCropImageView = false // defines if CropImageView should be seen or not
     
     var body: some View {
         ZStack {
@@ -66,55 +67,33 @@ struct startView: View {
                     // if showImagePicker = true -> sheet is presented
                     ImagePicker(sourceType: $sourceType, selectedImage: $selectedImage)
                     // content of the sheet view / instance of imagePicker
-                    /* sourceType: $sourceType = determines the source of the image picker (.libray or camera
+                    /* sourceType: $sourceType = determines the source of the image picker (.libray
+                     or camera
                      selectedImage: $selectedImage = stores the image selected by the user */
+                }
+                .fullScreenCover(isPresented: $showCropImageView) { 
+                    // if called shows fullscreen view
+                    if selectedImage != nil {
+                        // Check if an image has been selected
+                        cropImageView(selectedImage: $selectedImage)
+                        // If an image is selected, present to cropImageView with the selected image
+                    }
+                }
+                .onChange(of: selectedImage) { _ in showCropImageView = true
+                    /*When the selectedImage changes, set showCropImageView to true
+                     This triggers the fullScreenCover to be presented*/
                 }
             }
         }
-
     }
 }
 
-struct ImagePicker: UIViewControllerRepresentable {
-    @Binding var sourceType: UIImagePickerController.SourceType
-    @Binding var selectedImage: UIImage?
 
-    func makeUIViewController(context: Context) -> UIImagePickerController {
-        let picker = UIImagePickerController()
-        picker.delegate = context.coordinator
-        picker.sourceType = sourceType
-        return picker
-    }
-
-    func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {
-       
-    }
-
-    func makeCoordinator() -> Coordinator {
-        Coordinator(self)
-    }
-
-    class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-        var parent: ImagePicker
-
-        init(_ parent: ImagePicker) {
-            self.parent = parent
-        }
-
-        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-            if let image = info[.originalImage] as? UIImage {
-                parent.selectedImage = image
-            }
-            picker.dismiss(animated: true)
-        }
-
-        func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-            picker.dismiss(animated: true)
-        }
-    }
-}
 
 // PREVIEW//
 #Preview {
     startView()
 }
+
+
+

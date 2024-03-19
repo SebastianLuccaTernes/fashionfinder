@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct cropImageView: View {
-    
+    @Binding var selectedImage: UIImage?
+   
     
     var body: some View {
         ZStack {// Hintergrundbild oder Farbe
@@ -20,17 +21,19 @@ struct cropImageView: View {
                         .padding()
                         
                 }
+                if let image = selectedImage { // if an image is picket it is shown here
+                    Image(uiImage: image)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                } else {
+                    let image = Image("Dog") // Picture Example
+                       //Error handling @Sebastian?
+                       
+
+                }
                 Spacer()
                
-                Image("Dog")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .overlay(
-                        Rectangle()
-                            .stroke(Color.black, lineWidth: 3)
-                    )
-                    .padding(20)
-
+                
                 
                 
                 
@@ -54,5 +57,5 @@ struct cropImageView: View {
 }
 
 #Preview {
-    cropImageView()
+    cropImageView(selectedImage: .constant(UIImage(named: "Dog")))
 }
