@@ -7,21 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		383FF6342B9F926C000F8E03 /* startView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383FF6332B9F926C000F8E03 /* startView.swift */; };
-		383FF6362B9F9295000F8E03 /* cropImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383FF6352B9F9295000F8E03 /* cropImageView.swift */; };
-		383FF6382B9F92B3000F8E03 /* productListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383FF6372B9F92B3000F8E03 /* productListView.swift */; };
+		383FF6342B9F926C000F8E03 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383FF6332B9F926C000F8E03 /* StartView.swift */; };
+		383FF6362B9F9295000F8E03 /* CropImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383FF6352B9F9295000F8E03 /* CropImageView.swift */; };
+		383FF6382B9F92B3000F8E03 /* ProductListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383FF6372B9F92B3000F8E03 /* ProductListView.swift */; };
 		38F5019C2B988145005D25C3 /* fashionfinderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F5019B2B988145005D25C3 /* fashionfinderApp.swift */; };
 		38F5019E2B988145005D25C3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F5019D2B988145005D25C3 /* ContentView.swift */; };
 		38F501A02B988147005D25C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38F5019F2B988147005D25C3 /* Assets.xcassets */; };
 		38F501A42B988147005D25C3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38F501A32B988147005D25C3 /* Preview Assets.xcassets */; };
 		FC9B8D5D2BAA2EE600D89800 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9B8D5C2BAA2EE600D89800 /* ImagePicker.swift */; };
+		FC9B8D602BAB25C300D89800 /* CropViewController in Frameworks */ = {isa = PBXBuildFile; productRef = FC9B8D5F2BAB25C300D89800 /* CropViewController */; };
+		FC9B8D622BAB25C300D89800 /* TOCropViewController in Frameworks */ = {isa = PBXBuildFile; productRef = FC9B8D612BAB25C300D89800 /* TOCropViewController */; };
 		FCFE6CA82BA8C0E000FCCD2B /* CostumButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFE6CA72BA8C0E000FCCD2B /* CostumButtons.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		383FF6332B9F926C000F8E03 /* startView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = startView.swift; sourceTree = "<group>"; };
-		383FF6352B9F9295000F8E03 /* cropImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cropImageView.swift; sourceTree = "<group>"; };
-		383FF6372B9F92B3000F8E03 /* productListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = productListView.swift; sourceTree = "<group>"; };
+		383FF6332B9F926C000F8E03 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
+		383FF6352B9F9295000F8E03 /* CropImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropImageView.swift; sourceTree = "<group>"; };
+		383FF6372B9F92B3000F8E03 /* ProductListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListView.swift; sourceTree = "<group>"; };
 		38F501982B988145005D25C3 /* fashionfinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fashionfinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38F5019B2B988145005D25C3 /* fashionfinderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fashionfinderApp.swift; sourceTree = "<group>"; };
 		38F5019D2B988145005D25C3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -38,6 +40,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC9B8D622BAB25C300D89800 /* TOCropViewController in Frameworks */,
+				FC9B8D602BAB25C300D89800 /* CropViewController in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -48,9 +52,9 @@
 			isa = PBXGroup;
 			children = (
 				38F5019D2B988145005D25C3 /* ContentView.swift */,
-				383FF6332B9F926C000F8E03 /* startView.swift */,
-				383FF6352B9F9295000F8E03 /* cropImageView.swift */,
-				383FF6372B9F92B3000F8E03 /* productListView.swift */,
+				383FF6332B9F926C000F8E03 /* StartView.swift */,
+				383FF6352B9F9295000F8E03 /* CropImageView.swift */,
+				383FF6372B9F92B3000F8E03 /* ProductListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -126,6 +130,10 @@
 			dependencies = (
 			);
 			name = fashionfinder;
+			packageProductDependencies = (
+				FC9B8D5F2BAB25C300D89800 /* CropViewController */,
+				FC9B8D612BAB25C300D89800 /* TOCropViewController */,
+			);
 			productName = fashionfinder;
 			productReference = 38F501982B988145005D25C3 /* fashionfinder.app */;
 			productType = "com.apple.product-type.application";
@@ -154,6 +162,9 @@
 				Base,
 			);
 			mainGroup = 38F5018F2B988145005D25C3;
+			packageReferences = (
+				FC9B8D5E2BAB25C200D89800 /* XCRemoteSwiftPackageReference "TOCropViewController" */,
+			);
 			productRefGroup = 38F501992B988145005D25C3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -180,10 +191,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				383FF6362B9F9295000F8E03 /* cropImageView.swift in Sources */,
-				383FF6382B9F92B3000F8E03 /* productListView.swift in Sources */,
+				383FF6362B9F9295000F8E03 /* CropImageView.swift in Sources */,
+				383FF6382B9F92B3000F8E03 /* ProductListView.swift in Sources */,
 				FCFE6CA82BA8C0E000FCCD2B /* CostumButtons.swift in Sources */,
-				383FF6342B9F926C000F8E03 /* startView.swift in Sources */,
+				383FF6342B9F926C000F8E03 /* StartView.swift in Sources */,
 				FC9B8D5D2BAA2EE600D89800 /* ImagePicker.swift in Sources */,
 				38F5019E2B988145005D25C3 /* ContentView.swift in Sources */,
 				38F5019C2B988145005D25C3 /* fashionfinderApp.swift in Sources */,
@@ -336,7 +347,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.2;
@@ -380,7 +391,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.2;
@@ -419,6 +430,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FC9B8D5E2BAB25C200D89800 /* XCRemoteSwiftPackageReference "TOCropViewController" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/TimOliver/TOCropViewController.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.6.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FC9B8D5F2BAB25C300D89800 /* CropViewController */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FC9B8D5E2BAB25C200D89800 /* XCRemoteSwiftPackageReference "TOCropViewController" */;
+			productName = CropViewController;
+		};
+		FC9B8D612BAB25C300D89800 /* TOCropViewController */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FC9B8D5E2BAB25C200D89800 /* XCRemoteSwiftPackageReference "TOCropViewController" */;
+			productName = TOCropViewController;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 38F501902B988145005D25C3 /* Project object */;
 }

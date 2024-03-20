@@ -11,7 +11,7 @@ import Combine
 import UIKit
 
 // PREVIEW//
-struct startView: View {
+struct StartView: View {
     @State private var showImagePicker = false // Image picker is not shown to user
     @State private var sourceType: UIImagePickerController.SourceType = .photoLibrary // determines the source from which the picker will select images
     @State private var selectedImage: UIImage? // once a image is selected it is here stored
@@ -75,7 +75,7 @@ struct startView: View {
                     // if called shows fullscreen view
                     if selectedImage != nil {
                         // Check if an image has been selected
-                        cropImageView(selectedImage: $selectedImage)
+                        CropImageView(selectedImage: $selectedImage, showCropImageView: $showCropImageView)
                         // If an image is selected, present to cropImageView with the selected image
                     }
                 }
@@ -92,7 +92,7 @@ struct startView: View {
 
 // PREVIEW//
 #Preview {
-    startView()
+    StartView()
 }
 
 
