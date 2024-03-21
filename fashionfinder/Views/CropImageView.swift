@@ -66,15 +66,7 @@ struct CropImageView: View {
                 
                 Spacer() // Füllt den verfügbaren Raum und drückt den Button nach unten
                 
-                Button(action: {
-                    print("Button gedrückt")
-                }) {
-                    Text("Find It")
-                        .font(.system(size: 20, design: .rounded))
-                        .foregroundColor(.black)
-                        .padding()
-                        .background(Color.lavendel) // Buttonfarbe
-                        .cornerRadius(10)
+                CustomButton(title: "Find It", ButtonWidth: 150, ButtonHeight: 50, backgroundColor: Color.lavendel) {
                 }
             }
             .sheet(isPresented: $isCropViewActive) {
