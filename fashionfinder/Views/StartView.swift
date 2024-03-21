@@ -52,12 +52,15 @@ struct StartView: View {
                     Spacer ()
                 }
                 Spacer ()
-                HStack {
-                    CustomButton(title: "Gallery", ButtonWidth: 150, ButtonHeight: 50, backgroundColor: Color.lavendel) {
+                VStack {
+                    CustomButton(title: "Gallery", ButtonWidth: 300, ButtonHeight: 50, backgroundColor: Color.lavendel) {
                         self.sourceType = .photoLibrary // Action closure -> picker should access libray
                         self.showImagePicker = true // activates Image Picker
                     }
-                    CustomButton(title: "Camera", ButtonWidth: 150, ButtonHeight: 50, backgroundColor: Color.lavendel) {
+                    // Free Space
+                    .padding(20)
+                    // ---
+                    CustomButton(title: "Camera", ButtonWidth: 300, ButtonHeight: 50, backgroundColor: Color.lavendel) {
                         self.sourceType = .camera // Action closure -> picker should access camera
                         self.showImagePicker = true // activates Image Picker
                     }

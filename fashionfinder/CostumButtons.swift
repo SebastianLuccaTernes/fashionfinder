@@ -28,7 +28,7 @@ struct CustomButton: View {
                 .foregroundColor((Color.black))
                 .padding(.horizontal, 20)
                 .padding(.vertical, 10)
-                .shadow(color: .black.opacity(0.2), radius: 1, x: 5, y: 3) // Shadow Effect Text
+                //.shadow(color: .black.opacity(0.2), radius: 1, x: 5, y: 3) // Shadow Effect Text
         }
         .frame(width: ButtonWidth, height: ButtonHeight) // Sets the button size
         .cornerRadius(0) // Ensures the shadow matches the rounded corners
