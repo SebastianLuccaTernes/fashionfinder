@@ -51,7 +51,7 @@ struct CropImageView: View {
                             }
                     }
                 } else {
-                    let image = Image("Dog") // Picture Example
+                    let _image = Image("Dog") // Picture Example
                        //Error handling @Sebastian?
                         .resizable()
                         .aspectRatio(contentMode: .fit)
