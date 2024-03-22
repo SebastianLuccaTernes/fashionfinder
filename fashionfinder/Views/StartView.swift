@@ -46,6 +46,7 @@ struct StartView: View {
                             .multilineTextAlignment(.leading)
                             .padding(.leading, -0)
                         
+                        Text("Test")
                     }
                     
                     Spacer ()
