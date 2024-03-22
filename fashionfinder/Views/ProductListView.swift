@@ -32,7 +32,7 @@ struct ProductListView: View {
 
                             
                 }
-                Text("FINDER.".uppercased())
+                Text("FINDRIN.".uppercased())
                     .font(.custom("BaseNeueTrial-Regular", size: 36))
                     .padding()
                     .foregroundColor(.black)
