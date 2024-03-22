@@ -24,7 +24,7 @@ struct CustomButton: View {
             
             // Button content
             Text(title)
-                .font(.headline)
+                .font(.custom("ClashDisplay-Semibold", size: 16)) // Use custom font with size 20
                 .foregroundColor((Color.black))
                 .padding(.horizontal, 20)
                 .padding(.vertical, 10)

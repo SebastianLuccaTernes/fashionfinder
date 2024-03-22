@@ -30,7 +30,7 @@ struct StartView: View {
                     VStack {
                         // Logo Text!
                         Text("FashionFINDR")
-                            .font(.system(size: 40)) // Adjust the size as needed
+                            .font(.custom("BaseNeueTrial-Bold", size: 40))
                             .fontWeight(.bold)
                             .foregroundColor(.white)
                             .multilineTextAlignment(.leading)
@@ -41,11 +41,10 @@ struct StartView: View {
                         
                         
                         Text("See it Find It Buy It")
-                            .font(.system(size: 24)) // Adjust the size as needed
-                            .fontWeight(.thin)
+                            .font(.custom("BaseNeueTrial-Regular", size: 26))
                             .foregroundColor(.white)
                             .multilineTextAlignment(.leading)
-                            .padding(.leading, -40.0)
+                            .padding(.leading, -0)
                         
                     }
                     

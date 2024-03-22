@@ -32,6 +32,7 @@ struct CropImageView: View {
                             }
                     }
                     Text("FINDr.".uppercased())
+                        .font(.custom("BaseNeueTrial-Regular", size: 36))
                         .padding()
                         .foregroundColor(.black)
                         .font(.largeTitle)
