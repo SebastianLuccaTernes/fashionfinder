@@ -25,7 +25,7 @@ struct CustomButton: View {
             // Button content
             Text(title)
                 .font(.custom("ClashDisplay-Semibold", size: 16)) // Use custom font with size 20
-                .foregroundColor((Color.black))
+                .foregroundColor((Color.white))
                 .padding(.horizontal, 20)
                 .padding(.vertical, 10)
                 //.shadow(color: .black.opacity(0.2), radius: 1, x: 5, y: 3) // Shadow Effect Text
