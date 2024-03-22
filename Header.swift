@@ -39,6 +39,8 @@ struct Header<Content: View>: View {
     }
 }
 
+//Below is just QOL Preview for Testing purposes!
+
 struct ContentPage: View {
     var body: some View {
         VStack {

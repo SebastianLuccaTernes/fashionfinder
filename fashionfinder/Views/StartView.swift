@@ -29,24 +29,46 @@ struct StartView: View {
                 HStack {
                     VStack {
                         // Logo Text!
-                        Text("FashionFINDR")
-                            .font(.custom("BaseNeueTrial-Bold", size: 40))
-                            .fontWeight(.bold)
-                            .foregroundColor(.white)
-                            .multilineTextAlignment(.leading)
-                            .padding(.top, 60.0)
-                            .padding(.leading, 40.0)
-                            
-                            
+                        HStack {
+                            Text("Fashion")
+                                .font(.custom("BaseNeueTrial-Regular", size: 40))
+                            //.fontWeight(.light)
+                                .foregroundColor(.white)
+                                .multilineTextAlignment(.leading)
+                                .padding(.top, 59.0)
+                                .padding(.leading, 40.0)
+                            Text("FINDR.")
+                                .font(.custom("BaseNeueTrial-Bold", size: 40)) // Replace "AnotherFontName" with the actual name of the second font
+                                .fontWeight(.bold)
+                                .foregroundColor(.white)
+                                .multilineTextAlignment(.leading)
+                                .padding(.top, 60.0)
+                                .padding(.leading, -5.0)
+                        }
                         
                         
-                        Text("See it Find It Buy It")
-                            .font(.custom("BaseNeueTrial-Regular", size: 26))
-                            .foregroundColor(.white)
-                            .multilineTextAlignment(.leading)
-                            .padding(.leading, -0)
+                            Text("See It")
+                                .font(.custom("BaseNeueTrial-Regular", size: 24))
+                                //.fontWeight(.light)
+                                .foregroundColor(.white)
+                                .multilineTextAlignment(.leading)
+                                .padding(.top, -20.0)
+                                .padding(.leading, -104.0)
+                        Text("find it")
+                                .font(.custom("BaseNeueTrial-Regular", size: 24))
+                                //.fontWeight(.light)
+                                .foregroundColor(.white)
+                                .multilineTextAlignment(.leading)
+                                .padding(.top, -10.0)
+                                .padding(.leading, -70.0)
+                            Text("buy it")
+                                .font(.custom("BaseNeueTrial-Regular", size: 24))
+                                //.fontWeight(.light)
+                                .foregroundColor(.white)
+                                .multilineTextAlignment(.leading)
+                                .padding(.top, -10.0)
+                                .padding(.leading)
                         
-                        Text("Test")
                     }
                     
                     Spacer ()
@@ -90,6 +112,8 @@ struct StartView: View {
         }
     }
 }
+
+
 
 
 
