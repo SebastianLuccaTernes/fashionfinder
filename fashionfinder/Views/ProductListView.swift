@@ -13,29 +13,45 @@ struct ProductListView: View {
 
     var body: some View {
         VStack{
+            
             HStack { // Title und back taste
                 Button(action: {
-                    // Action to dismiss the fullScreenCover
-                    isStartViewActive = true
-                }) { Image(systemName: "chevron.left")
+                    // Toggle the state to show or hide the full screen cover
+                    isCropViewActive.toggle()
+                }) {
+                    Image(systemName: "chevron.left")
                         .foregroundColor(.black)
-                        .fullScreenCover(isPresented: $isStartViewActive) {
-                            CropImageView(selectedImage: .constant(nil), showCropImageView: .constant(true))
-                        }
+                        .padding(.leading, 40)
+
+                }
+                Spacer()
+                    .padding(.leading, 100)
+                // Attach the fullScreenCover modifier to a view that is always present
+                .fullScreenCover(isPresented: $isCropViewActive) {
+                    CropImageView(selectedImage: .constant(nil), showCropImageView: .constant(true))
+
+                            
                 }
                 Text("FINDr.".uppercased())
+                    .font(.custom("BaseNeueTrial-Regular", size: 36))
                     .padding()
                     .foregroundColor(.black)
                     .font(.largeTitle)
                     .bold()
+                    .padding(.leading, -255)
+
                 
                 
             }
-            Spacer()
+
             
+            Spacer()
         }
+                
+            }
+            
+        
     }
-}
 
 #Preview {
     ProductListView()

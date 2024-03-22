@@ -22,14 +22,21 @@ struct CropImageView: View {
             VStack {
                 HStack { // Title und back taste
                     Button(action: {
-                        // Action to dismiss the fullScreenCover
-                        showCropImageView = false
-                        isStartViewActive = true
-                    }) { Image(systemName: "chevron.left")
-                            .foregroundColor(.black)
-                            .fullScreenCover(isPresented: $isStartViewActive) {
-                                StartView()
-                            }
+                        // Toggle the state to show or hide the full screen cover
+                        isStartViewActive.toggle()
+                    }) {
+                        Image(systemName: "chevron.left")
+                            .foregroundColor(.black)   
+                            .padding(.leading, 40)
+
+                    }
+                    Spacer()
+                        .padding(.leading, 100)
+                    // Attach the fullScreenCover modifier to a view that is always present
+                    .fullScreenCover(isPresented: $isStartViewActive) {
+                        StartView()
+
+                                
                     }
                     Text("FINDr.".uppercased())
                         .font(.custom("BaseNeueTrial-Regular", size: 36))
@@ -37,6 +44,8 @@ struct CropImageView: View {
                         .foregroundColor(.black)
                         .font(.largeTitle)
                         .bold()
+                        .padding(.leading, -255)
+
                     
                     
                 }
