@@ -13,7 +13,8 @@ struct CropImageView: View {
     @Binding var showCropImageView: Bool
     @State private var isStartViewActive = false
     @State private var isCropViewActive = false
-   
+    let dog = Image("Dog")
+    
     
     var body: some View {
         ZStack {// Hintergrundbild oder Farbe
@@ -50,34 +51,37 @@ struct CropImageView: View {
                             .padding()
                             .clipShape(Rectangle())
                             .onTapGesture {
-                                self.isCropViewActive = true //activates sheet 
+                                self.isCropViewActive = true //activates sheet
                             }
                     }
                 } else {
-                    let _image = Image("Dog") // Picture Example
-                       //Error handling @Sebastian?
+                    Image("Dog") // Picture Example
+                    //Error handling @Sebastian?
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: 200, height: 200 * 9 / 16)
+                        .frame(width: 300, height: 1000 * 9 / 16)
                         .border(Color.black, width: 1)
                         .padding()
                         .clipShape(Rectangle())
-                       
-
+                        .onTapGesture {
+                            self.isCropViewActive = true //activates sheet
+                        }
+                            
+                        }
+                    Spacer()
+                    
+                    Spacer() // Füllt den verfügbaren Raum und drückt den Button nach unten
+                    
+                    CustomButton(title: "Find It", ButtonWidth: 150, ButtonHeight: 50, backgroundColor: Color.lavendel) {
+                    }
                 }
-                Spacer()
-                
-                Spacer() // Füllt den verfügbaren Raum und drückt den Button nach unten
-                
-                CustomButton(title: "Find It", ButtonWidth: 150, ButtonHeight: 50, backgroundColor: Color.lavendel) {
-                }
-            }
-            .sheet(isPresented: $isCropViewActive) {
-                CropViewWrapper(selectedImage: $selectedImage, isActive: $isCropViewActive)
+                    .sheet(isPresented: $isCropViewActive) {
+                        CropViewWrapper(selectedImage: $selectedImage, isActive: $isCropViewActive)
+                    }
             }
         }
     }
-}
+
 
 // Gerne noch in neue Model machen, bin frustriert 
 struct CropViewWrapper: UIViewControllerRepresentable {
