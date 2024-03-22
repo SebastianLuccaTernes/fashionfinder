@@ -23,20 +23,18 @@ struct Header<Content: View>: View {
             }) {
                 Image(systemName: "chevron.left")
                     .foregroundColor(.black)
-                    .padding(.leading, 40)
-            }
-            Spacer()
-                .padding(.leading, 100)
-            .fullScreenCover(isPresented: $isPresented) {
-                content()
-            }
+                .padding(.leading, 35)            }
+            Spacer() // This Spacer pushes the Text to the center
             Text("FINDr.".uppercased())
                 .font(.custom("BaseNeueTrial-Regular", size: 36))
-                .padding()
+                .padding(.leading, -39)
                 .foregroundColor(.black)
                 .font(.largeTitle)
                 .bold()
-                .padding(.leading, -255)
+            Spacer() // This Spacer ensures the Text is centered
+        }
+        .fullScreenCover(isPresented: $isPresented) {
+            content()
         }
     }
 }
@@ -46,6 +44,7 @@ struct ContentPage: View {
         VStack {
             Header(content: { StartView() }) // Explicitly specify the closure type
             // Your page content here
+            Spacer()
         }
     }
 }
