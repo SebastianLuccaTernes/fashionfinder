@@ -13,6 +13,7 @@ struct CropImageView: View {
     @Binding var showCropImageView: Bool
     @State private var isStartViewActive = false
     @State private var isCropViewActive = false
+    @State private var showProductListSheet = false
     
     
     var body: some View {
@@ -82,10 +83,15 @@ struct CropImageView: View {
                     Spacer() // Füllt den verfügbaren Raum und drückt den Button nach unten
                     
                     CustomButton(title: "Find It", ButtonWidth: 150, ButtonHeight: 50, backgroundColor: Color.black) {
+                        self.isCropViewActive = false // Close the crop view if it's open
+                        self.showProductListSheet = true // Show the slider view
                     }
                 }
                     .sheet(isPresented: $isCropViewActive) {
                         CropViewWrapper(selectedImage: $selectedImage, isActive: $isCropViewActive)
+                    }
+                    .sheet(isPresented: $showProductListSheet) {
+                        SliderView(content: ProductListView(), isActive: $showProductListSheet)
                     }
             }
         }
