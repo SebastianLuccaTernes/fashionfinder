@@ -10,7 +10,6 @@ import SwiftUI
 struct ProductListView: View {
     @State private var isStartViewActive = false
     @State private var isCropViewActive = false
-    let image = Image("Dog")
 
     var body: some View {
         VStack{

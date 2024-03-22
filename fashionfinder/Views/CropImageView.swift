@@ -13,7 +13,6 @@ struct CropImageView: View {
     @Binding var showCropImageView: Bool
     @State private var isStartViewActive = false
     @State private var isCropViewActive = false
-    let dog = Image("Dog")
     
     
     var body: some View {
