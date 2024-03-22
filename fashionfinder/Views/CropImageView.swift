@@ -11,6 +11,7 @@ import CropViewController
 struct CropImageView: View {
     @Binding var selectedImage: UIImage?
     @Binding var showCropImageView: Bool
+    @State private var isStartViewActive = false
     @State private var isCropViewActive = false
    
     
@@ -23,10 +24,12 @@ struct CropImageView: View {
                     Button(action: {
                         // Action to dismiss the fullScreenCover
                         showCropImageView = false
+                        isStartViewActive = true
                     }) { Image(systemName: "chevron.left")
-                            .foregroundColor(.black
-                            )
-                        
+                            .foregroundColor(.black)
+                            .fullScreenCover(isPresented: $isStartViewActive) {
+                                StartView()
+                            }
                     }
                     Text("FINDr.".uppercased())
                         .padding()
