@@ -22,33 +22,8 @@ struct CropImageView: View {
                 .edgesIgnoringSafeArea(.all)
             VStack {
                 HStack { // Title und back taste
-                    Button(action: {
-                        // Toggle the state to show or hide the full screen cover
-                        isStartViewActive.toggle()
-                    }) {
-                        Image(systemName: "chevron.left")
-                            .foregroundColor(.black)   
-                            .padding(.leading, 40)
-
-                    }
-                    Spacer()
-                        .padding(.leading, 100)
-                    // Attach the fullScreenCover modifier to a view that is always present
-                    .fullScreenCover(isPresented: $isStartViewActive) {
-                        StartView()
-
-                                
-                    }
-                    Text("FINDr.".uppercased())
-                        .font(.custom("BaseNeueTrial-Regular", size: 36))
-                        .padding()
-                        .foregroundColor(.black)
-                        .font(.largeTitle)
-                        .bold()
-                        .padding(.leading, -255)
-
-                    
-                    
+                    // Header = See Header.swift
+                    Header(content: { StartView() }) // Explicitly specify the closure type
                 }
                 
                 if let image = selectedImage { // if an image is picket it is shown here
