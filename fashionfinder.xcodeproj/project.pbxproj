@@ -342,6 +342,7 @@
 			isa = PBXGroup;
 			children = (
 				FC9B8D5C2BAA2EE600D89800 /* ImagePicker.swift */,
+				FC6E619B2BADE21C00FAF749 /* SliderView.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -676,6 +677,7 @@
 			files = (
 				AA1FAD1F2BADDDC800B9F10E /* Header.swift in Sources */,
 				383FF6362B9F9295000F8E03 /* CropImageView.swift in Sources */,
+				FC6E619C2BADE21C00FAF749 /* SliderView.swift in Sources */,
 				383FF6382B9F92B3000F8E03 /* ProductListView.swift in Sources */,
 				FCFE6CA82BA8C0E000FCCD2B /* CostumButtons.swift in Sources */,
 				383FF6342B9F926C000F8E03 /* StartView.swift in Sources */,
