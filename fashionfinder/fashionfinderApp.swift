@@ -11,7 +11,7 @@ import SwiftUI
 struct fashionfinderApp: App {
     var body: some Scene {
         WindowGroup {
-            StartView()
+            SplashScreenView()
         }
     }
 }
