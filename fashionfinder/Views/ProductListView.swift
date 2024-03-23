@@ -23,7 +23,6 @@ struct ProductListView: View {
             }
             Spacer()
         }
-        GeometryReader { geometry in
             VStack {
                 // Slider
                 DraggableSheetView(content: ListViewCardContent())
@@ -41,7 +40,6 @@ struct ProductListView: View {
             
         }
     }
-}
 
 // Content for the Slider
 struct ListViewCardContent: CardContent {
@@ -64,7 +62,11 @@ struct ListViewCardContent: CardContent {
                         }
                     }
                 }
+                .background(Color.clear)
+
             }
+                .background(Color.clear)
+
         )
         
     }

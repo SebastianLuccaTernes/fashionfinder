@@ -36,7 +36,10 @@ class DraggableSheetViewController<Content: CardContent>: UIViewController {
     
     func setupSheetView() {
         sheetView = UIView()
-        sheetView.backgroundColor = .white
+        sheetView.backgroundColor = UIColor(named: "grey_F")
+        //sheetView.layer.borderColor = UIColor.black.cgColor // Set the stroke color
+        //sheetView.layer.borderWidth = 1.0 // Set the stroke width
+
         view.addSubview(sheetView)
         
         sheetView.translatesAutoresizingMaskIntoConstraints = false
@@ -45,7 +48,23 @@ class DraggableSheetViewController<Content: CardContent>: UIViewController {
         NSLayoutConstraint.activate([
             sheetView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
             sheetView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
-            sheetView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            sheetView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            
+        ])
+            
+        // Drag Indicator setup
+            let dragIndicator = UIView()
+            dragIndicator.backgroundColor = UIColor.systemGray3 // Choose a color that fits your design
+            dragIndicator.layer.cornerRadius = 3 // Adjust for a rounded appearance
+
+            sheetView.addSubview(dragIndicator)
+
+            dragIndicator.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                dragIndicator.topAnchor.constraint(equalTo: sheetView.topAnchor, constant: 8), // Position from the top of the sheet
+                dragIndicator.centerXAnchor.constraint(equalTo: sheetView.centerXAnchor), // Center horizontally
+                dragIndicator.widthAnchor.constraint(equalToConstant: 40), // Width of the drag indicator
+                dragIndicator.heightAnchor.constraint(equalToConstant: 6) // Height of the drag indicator
             
         ])
         
@@ -54,6 +73,7 @@ class DraggableSheetViewController<Content: CardContent>: UIViewController {
         
         sheetView.layer.cornerRadius = 30
         sheetView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner] // Rounds only the top corners
+
 
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handleSheetPan))
         sheetView.addGestureRecognizer(panGesture)
@@ -80,6 +100,10 @@ class DraggableSheetViewController<Content: CardContent>: UIViewController {
         addChild(hostingController)
         sheetView.addSubview(hostingController.view)
         hostingController.didMove(toParent: self)
+        
+        
+        hostingController.view.backgroundColor = UIColor.clear
+
 
         hostingController.view.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -105,12 +129,17 @@ class DraggableSheetViewController<Content: CardContent>: UIViewController {
 struct CustomCardContent: CardContent {
     var view: AnyView {
         AnyView(
+            
             VStack {
+                
                 Text("Product Listing")
             }
+                .background(Color.clear)
+
         )
         
     }
+    
 }
 
 
@@ -130,20 +159,6 @@ struct DraggableSheetView<Content: CardContent>: UIViewControllerRepresentable {
 
 
 //Below is just QOL Preview for Testing purposes!
-
-//struct CardView: View {
-   // var body: some View {
-     //   VStack {
-        //    DraggableSheetView(content: CustomCardContent)
-      //  }
-   // }
-//}
-
-    //struct CardView_Previews: PreviewProvider {
-      //  static var previews: some View {
-        //      DraggableSheetView(content: CustomCardContent)
-       //     }
-      //  }
 
 
 #Preview {
