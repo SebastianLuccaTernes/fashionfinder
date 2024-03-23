@@ -9,10 +9,17 @@ import SwiftUI
 
 @main
 struct fashionfinderApp: App {
+    @AppStorage("hasShownCokieConsent") var hasShownCookieConsent: Bool = false
     var body: some Scene {
         WindowGroup {
             SplashScreenView()
         }
     }
 }
-//test
+
+/* if hasShownCookieConsent {
+ SplashScreenView() // Ihre Hauptansicht
+} else {
+ CookieConsentView(hasShownCookieConsent: $hasShownCookieConsent)
+}
+}*/

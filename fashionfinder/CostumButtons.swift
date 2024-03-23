@@ -41,3 +41,18 @@ struct CustomButton: View {
         }
             }
 }
+
+struct CookiesConsentButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .frame(width: 350, height: 35) // Setzen Sie hier die gewünschte Breite und Höhe
+            .background(Color.black) // Schwarzer Hintergrund
+            .foregroundColor(.white) // Weiße Textfarbe
+            .overlay(
+                Rectangle()
+                    .stroke(Color.white, lineWidth: 1) // Weißer Rahmen mit der gewünschten Liniendicke
+            )
+            .scaleEffect(configuration.isPressed ? 0.9 : 1.0) // Kleine Animation beim Drücken
+    }
+}
+
