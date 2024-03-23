@@ -1,17 +1,32 @@
 import UIKit
 import SwiftUI
 
+/* To-Do List -Luca  //
+ 1. Animations for Pangesture for example XXX
+ 2. Make Sheet fullscreen at the Bottom
+ 3. Remove second White BG Layer
+
+                        */
+
+
+// Customizers - Settings
+var def_maxHeight: Double = 0.8
+var def_minHeight: Double = 0.3
+
+// Settings End
 
 protocol CardContent {
     // Define any properties or methods your content needs to expose
     var view: AnyView { get }
 
 }
-class DraggableSheetViewController<Content: CardContent>: UIViewController {
+class DraggableSheetViewController<Content: CardContent>: UIViewController, UIGestureRecognizerDelegate {
 
     var sheetView: UIView!
     var sheetViewHeightConstraint: NSLayoutConstraint!
-    private var content: Content
+    var content: Content
+
+    
 
     
     init(content: Content) {
@@ -26,20 +41,29 @@ class DraggableSheetViewController<Content: CardContent>: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        setupSheetView()
+        setupSheetView()  // Ensure this method initializes panGesture
         addContent()
+
         
+    
     }
+
+
     
     func setupUI() {
+        // To be added Later...
+        view.backgroundColor = UIColor.clear  // Set the background color to clear
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.0)  // Semi-transparent black background
+
     }
     
     func setupSheetView() {
         sheetView = UIView()
         sheetView.backgroundColor = UIColor(named: "grey_F")
+        
         //sheetView.layer.borderColor = UIColor.black.cgColor // Set the stroke color
         //sheetView.layer.borderWidth = 1.0 // Set the stroke width
-
+        
         view.addSubview(sheetView)
         
         sheetView.translatesAutoresizingMaskIntoConstraints = false
@@ -51,49 +75,89 @@ class DraggableSheetViewController<Content: CardContent>: UIViewController {
             sheetView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
             
         ])
-            
-        // Drag Indicator setup
-            let dragIndicator = UIView()
-            dragIndicator.backgroundColor = UIColor.systemGray3 // Choose a color that fits your design
-            dragIndicator.layer.cornerRadius = 3 // Adjust for a rounded appearance
-
-            sheetView.addSubview(dragIndicator)
-
-            dragIndicator.translatesAutoresizingMaskIntoConstraints = false
-            NSLayoutConstraint.activate([
-                dragIndicator.topAnchor.constraint(equalTo: sheetView.topAnchor, constant: 8), // Position from the top of the sheet
-                dragIndicator.centerXAnchor.constraint(equalTo: sheetView.centerXAnchor), // Center horizontally
-                dragIndicator.widthAnchor.constraint(equalToConstant: 40), // Width of the drag indicator
-                dragIndicator.heightAnchor.constraint(equalToConstant: 6) // Height of the drag indicator
-            
-        ])
+        //print("Gesture Recognizer added to dragIndicator")
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handleSheetPan))
+        sheetView.addGestureRecognizer(panGesture)
+        panGesture.delegate = self  // Assigning the delegate here
+    
         
         sheetViewHeightConstraint = sheetView.heightAnchor.constraint(equalToConstant: 200)
         sheetViewHeightConstraint.isActive = true
         
         sheetView.layer.cornerRadius = 30
-        sheetView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner] // Rounds only the top corners
+        sheetView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        
+        // Drag Indicator setup
+        let dragIndicator = UIView()
+        dragIndicator.backgroundColor = UIColor.systemGray3 // Choose a color that fits your design
+        dragIndicator.layer.cornerRadius = 3 // Adjust for a rounded appearance
+        dragIndicator.isUserInteractionEnabled = true
+
+        sheetView.addSubview(dragIndicator)
+        
+        
+        dragIndicator.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            dragIndicator.topAnchor.constraint(equalTo: sheetView.topAnchor, constant: 8), // Position from the top of the sheet
+            dragIndicator.centerXAnchor.constraint(equalTo: sheetView.centerXAnchor), // Center horizontally
+            dragIndicator.widthAnchor.constraint(equalToConstant: 50), // Width of the drag indicator
+            dragIndicator.heightAnchor.constraint(equalToConstant: 8) // Height of the drag indicator
+            
+        ])
+        
+  
 
 
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handleSheetPan))
-        sheetView.addGestureRecognizer(panGesture)
+      //  let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handleSheetPan))
+      //  sheetView.addGestureRecognizer(panGesture)
     }
     
-    @objc  func handleSheetPan(gesture: UIPanGestureRecognizer) {
+    @objc func handleSheetPan(gesture: UIPanGestureRecognizer) {
         let translation = gesture.translation(in: sheetView)
-        let newHeight = sheetViewHeightConstraint.constant - translation.y
+        var newHeight = max(100, sheetViewHeightConstraint.constant - translation.y) // Prevents the sheet from going too low, adjust '100' as needed
+
+        // Apply the minimum height constraint to prevent the sheet from going too low
+        let minHeight: CGFloat = def_minHeight // Adjust this value as needed
+        newHeight = max(minHeight, newHeight)
         
-        if newHeight > 100, newHeight < UIScreen.main.bounds.height * 0.8 {
-            sheetViewHeightConstraint.constant = newHeight
-            gesture.setTranslation(.zero, in: sheetView)
-        }
+        // Apply the maximum height constraint to prevent the sheet from going too high
+        let maxHeight: CGFloat = UIScreen.main.bounds.height * def_maxHeight // Adjust this value as needed
+        newHeight = min(maxHeight, newHeight)
         
+        // Apply a minimal animation for smoother height adjustment
+        UIView.animate(withDuration: 0.05, delay: 0, options: [.curveEaseOut], animations: {
+            self.sheetViewHeightConstraint.constant = newHeight
+            self.view.layoutIfNeeded()
+        }, completion: nil)
+
+        gesture.setTranslation(.zero, in: sheetView)
+
         if gesture.state == .ended {
-            UIView.animate(withDuration: 0.3) {
+            // Animate gently to settle the sheet after the drag ends
+            UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseOut], animations: {
                 self.view.layoutIfNeeded()
-            }
+            }, completion: nil)
         }
     }
+
+
+    func animateToEndPosition() {
+        // Determine the nearest state. This is just an example; you might need more sophisticated logic.
+        let expandedHeight = UIScreen.main.bounds.height * 0.8
+        let collapsedHeight: CGFloat = 200
+        let halfwayPoint = (expandedHeight + collapsedHeight) / 2
+        var targetHeight = collapsedHeight
+
+        if sheetViewHeightConstraint.constant > halfwayPoint {
+            targetHeight = expandedHeight
+        }
+
+        UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseInOut], animations: {
+            self.sheetViewHeightConstraint.constant = targetHeight
+            self.view.layoutIfNeeded()
+        }, completion: nil)
+    }
+
     
     func addContent() {
         let hostingController = UIHostingController(rootView: content.view)
@@ -120,10 +184,14 @@ class DraggableSheetViewController<Content: CardContent>: UIViewController {
         sheetView.clipsToBounds = true
 
 
-        
+        func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+            return true
+        }
     }
     
 }
+
+
 
 // Wrapper for your DraggableSheetViewController
 struct CustomCardContent: CardContent {
@@ -143,7 +211,7 @@ struct CustomCardContent: CardContent {
 }
 
 
-
+#if DEBUG
 
 
 struct DraggableSheetView<Content: CardContent>: UIViewControllerRepresentable {
@@ -164,3 +232,4 @@ struct DraggableSheetView<Content: CardContent>: UIViewControllerRepresentable {
 #Preview {
     DraggableSheetView(content: CustomCardContent())
 }
+#endif

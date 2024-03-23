@@ -49,7 +49,8 @@ struct ListViewCardContent: CardContent {
     var view: AnyView {
         AnyView(
             VStack {
-                Text("Product Listing")
+                Text("Product 12344")
+                    .padding(.top, 30)
                 Spacer()
                 ScrollView {
                     LazyVGrid(columns: gridLayout, spacing: 20) {
@@ -62,10 +63,8 @@ struct ListViewCardContent: CardContent {
                         }
                     }
                 }
-                .background(Color.clear)
 
             }
-                .background(Color.clear)
 
         )
         

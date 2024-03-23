@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import CropViewController
+import TOCropViewController
 
 struct CropImageView: View {
     @Binding var selectedImage: UIImage?
@@ -51,58 +51,58 @@ struct CropImageView: View {
                         .onTapGesture {
                             self.isCropViewActive = true //activates sheet
                         }
-                            
-                        }
-                    Spacer()
                     
-                    Spacer() // Füllt den verfügbaren Raum und drückt den Button nach unten
-                    
-                    CustomButton(title: "Find It", ButtonWidth: 150, ButtonHeight: 50, backgroundColor: Color.black) {
-                        self.isCropViewActive = false // Close the crop view if it's open
-                        self.showProductListSheet = true // Show the slider view
-                    }
                 }
-                    .sheet(isPresented: $isCropViewActive) {
-                        CropViewWrapper(selectedImage: $selectedImage, isActive: $isCropViewActive)
-                    }
-                    .sheet(isPresented: $showProductListSheet) {
-                        SliderView(content: ProductListView(), isActive: $showProductListSheet)
-                    }
+                Spacer()
+                
+                Spacer() // Füllt den verfügbaren Raum und drückt den Button nach unten
+                
+                CustomButton(title: "Find It", ButtonWidth: 150, ButtonHeight: 50, backgroundColor: Color.black) {
+                    self.isCropViewActive = false // Close the crop view if it's open
+                    self.showProductListSheet = true // Show the slider view
+                }
+            }
+            .sheet(isPresented: $isCropViewActive) {
+                TOCropViewWrapper(selectedImage: $selectedImage, isActive: $isCropViewActive)
+            }
+            .sheet(isPresented: $showProductListSheet) {
+                DraggableSheetView(content: ListViewCardContent())
             }
         }
     }
+}
 
 
 // Gerne noch in neue Model machen, bin frustriert 
-struct CropViewWrapper: UIViewControllerRepresentable {
+struct TOCropViewWrapper: UIViewControllerRepresentable {
     // Bindings to share state between SwiftUi and UIkit components
     @Binding var selectedImage: UIImage?
     @Binding var isActive: Bool
 
     // creates and configures an instance of CropViewController
-    func makeUIViewController(context: Context) -> CropViewController {
-        let cropViewController = CropViewController(croppingStyle: .default, image: selectedImage ?? UIImage())
+    func makeUIViewController(context: Context) -> TOCropViewController {
+        let cropViewController = TOCropViewController(croppingStyle: .default, image: selectedImage ?? UIImage())
         cropViewController.delegate = context.coordinator
         return cropViewController
     }
 //updates the viewcontrroller when SwiftUI state Changes
-    func updateUIViewController(_ uiViewController: CropViewController, context: Context) {}
+    func updateUIViewController(_ uiViewController: TOCropViewController, context: Context) {}
 
     //Creates a coordinator to manage communication between Ui and UiKit view COntroller
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
     }
 // handels delgate methods of the CropViewController
-    class Coordinator: NSObject, CropViewControllerDelegate {
-        var parent: CropViewWrapper
+    class Coordinator: NSObject, TOCropViewControllerDelegate {
+        var parent: TOCropViewWrapper
 
         //Initializes with a reference to the parent wrapper
-        init(_ parent: CropViewWrapper) {
+        init(_ parent: TOCropViewWrapper) {
             self.parent = parent
         }
 
         //Delegeate method called when the imaeg has been cropped
-        func cropViewController(_ cropViewController: CropViewController, didCropToImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
+        func cropViewController(_ cropViewController: TOCropViewController, didCropTo image: UIImage, with cropRect: CGRect, angle: Int) {
             parent.selectedImage = image // updates the selected image with the cropped image
             parent.isActive = false // Schließt das Sheet
         }
