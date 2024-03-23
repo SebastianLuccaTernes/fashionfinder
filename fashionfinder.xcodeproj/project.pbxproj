@@ -130,6 +130,7 @@
 		AA03ABC82BAD16AC00112EAE /* ClashDisplay-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = AA03AB9A2BAD16AC00112EAE /* ClashDisplay-Semibold.otf */; };
 		AA1FAD1F2BADDDC800B9F10E /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1FAD1E2BADDDC800B9F10E /* Header.swift */; };
 		AA1FAD212BAE070200B9F10E /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1FAD202BAE070200B9F10E /* SliderView.swift */; };
+		AAC80F2A2BAF07FE008D1379 /* DragSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC80F292BAF07FE008D1379 /* DragSheetView.swift */; };
 		FC1A66B82BAEF37F00CF4D7D /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1A66B72BAEF37F00CF4D7D /* SplashScreenView.swift */; };
 		FC1A66BA2BAF056300CF4D7D /* CookieConsentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1A66B92BAF056300CF4D7D /* CookieConsentView.swift */; };
 		FC1A66BC2BAF123900CF4D7D /* CookiesSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1A66BB2BAF123900CF4D7D /* CookiesSettingView.swift */; };
@@ -265,6 +266,7 @@
 		AA03AB9A2BAD16AC00112EAE /* ClashDisplay-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ClashDisplay-Semibold.otf"; sourceTree = "<group>"; };
 		AA1FAD1E2BADDDC800B9F10E /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = SOURCE_ROOT; };
 		AA1FAD202BAE070200B9F10E /* SliderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderView.swift; sourceTree = "<group>"; };
+		AAC80F292BAF07FE008D1379 /* DragSheetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DragSheetView.swift; sourceTree = "<group>"; };
 		FC1A66B72BAEF37F00CF4D7D /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		FC1A66B92BAF056300CF4D7D /* CookieConsentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookieConsentView.swift; sourceTree = "<group>"; };
 		FC1A66BB2BAF123900CF4D7D /* CookiesSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookiesSettingView.swift; sourceTree = "<group>"; };
@@ -343,6 +345,7 @@
 		38F501AC2B9881A7005D25C3 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				AAC80F292BAF07FE008D1379 /* DragSheetView.swift */,
 				FCFE6CA72BA8C0E000FCCD2B /* CostumButtons.swift */,
 				AA1FAD1E2BADDDC800B9F10E /* Header.swift */,
 			);
@@ -686,6 +689,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAC80F2A2BAF07FE008D1379 /* DragSheetView.swift in Sources */,
 				AA1FAD1F2BADDDC800B9F10E /* Header.swift in Sources */,
 				383FF6362B9F9295000F8E03 /* CropImageView.swift in Sources */,
 				383FF6382B9F92B3000F8E03 /* ProductListView.swift in Sources */,

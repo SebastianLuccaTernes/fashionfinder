@@ -23,34 +23,11 @@ struct ProductListView: View {
             }
             Spacer()
         }
-        GeometryReader { geometry in
             VStack {
                 // Slider
-                Rectangle()
-                    .fill(Color.gray)
-                    .frame(height: sliderHeight)
-                    .gesture(
-                        DragGesture()
-                            .onChanged { value in
-                                let newHeight = sliderHeight + value.translation.height
-                                if newHeight >= 0 && newHeight <= geometry.size.height {
-                                    sliderHeight = newHeight
-                                }
-                            }
-                    )
+                DraggableSheetView(content: ListViewCardContent())
                 
-                
-                    ScrollView {
-                        LazyVGrid(columns: gridLayout, spacing: 20) {
-                            ForEach(0..<10) { index in
-                                Image("Dog")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(height: 200)
-                                    .padding()
-                            }
-                        }
-                    }
+            
                     
                     
                     
@@ -63,7 +40,39 @@ struct ProductListView: View {
             
         }
     }
+
+// Content for the Slider
+struct ListViewCardContent: CardContent {
+    let gridLayout = [GridItem(.flexible()), GridItem(.flexible())]
+
+    
+    var view: AnyView {
+        AnyView(
+            VStack {
+                Text("Product Listing")
+                Spacer()
+                ScrollView {
+                    LazyVGrid(columns: gridLayout, spacing: 20) {
+                        ForEach(0..<10) { index in
+                            Image("Dog")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(height: 200)
+                                .padding()
+                        }
+                    }
+                }
+                .background(Color.clear)
+
+            }
+                .background(Color.clear)
+
+        )
+        
+    }
 }
+
+
 #Preview {
     ProductListView()
 }
