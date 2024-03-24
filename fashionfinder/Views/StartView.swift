@@ -24,6 +24,7 @@ struct StartView: View {
                 .resizable() // Makes the image resizable
                 .aspectRatio(contentMode: .fill) // Sets the content mode to fit the image within the view's bounds
                 .edgesIgnoringSafeArea(.all) // To fill the full Screen
+                .zIndex(0.0)
             
             VStack {
                 HStack {
@@ -37,6 +38,7 @@ struct StartView: View {
                                 .multilineTextAlignment(.leading)
                                 .padding(.top, 59.0)
                                 .padding(.leading, 40.0)
+                            
                             Text("FINDR.")
                                 .font(.custom("BaseNeueTrial-Bold", size: 40)) // Replace "AnotherFontName" with the actual name of the second font
                                 .fontWeight(.bold)
@@ -45,7 +47,8 @@ struct StartView: View {
                                 .padding(.top, 60.0)
                                 .padding(.leading, -5.0)
                         }
-                        
+                        .zIndex(1.0)
+
                         
                             Text("See It")
                                 .font(.custom("BaseNeueTrial-Regular", size: 24))
@@ -70,9 +73,13 @@ struct StartView: View {
                                 .padding(.leading)
                         
                     }
+                    .zIndex(1.0)
+
                     
                     Spacer ()
                 }
+                .zIndex(1.0)
+
                 Spacer ()
                 VStack {
                     CustomButton(title: "Upload Image", ButtonWidth: 300, ButtonHeight: 50, backgroundColor: Color.black) {

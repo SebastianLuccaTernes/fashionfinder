@@ -23,20 +23,15 @@ struct ProductListView: View {
             }
             Spacer()
         }
-            VStack {
-                // Slider
-                DraggableSheetView(content: ListViewCardContent())
+  
+                    
+                    DraggableSheetView(content: ListViewCardContent())
                 
-            
-                    
-                    
-                    
-                    
-                    
+
                     Spacer()
                 
-                
-            }
+            
+            
             
         }
     }
@@ -44,12 +39,14 @@ struct ProductListView: View {
 // Content for the Slider
 struct ListViewCardContent: CardContent {
     let gridLayout = [GridItem(.flexible()), GridItem(.flexible())]
+    
 
     
     var view: AnyView {
         AnyView(
             VStack {
-                Text("Product Listing")
+                Text("Product 12344")
+                    .padding(.top, 30)
                 Spacer()
                 ScrollView {
                     LazyVGrid(columns: gridLayout, spacing: 20) {
@@ -59,17 +56,22 @@ struct ListViewCardContent: CardContent {
                                 .aspectRatio(contentMode: .fit)
                                 .frame(height: 200)
                                 .padding()
+                                .edgesIgnoringSafeArea(.all)
                         }
+                        
+                        
                     }
+
                 }
-                .background(Color.clear)
+
 
             }
-                .background(Color.clear)
+
 
         )
         
     }
+    
 }
 
 
