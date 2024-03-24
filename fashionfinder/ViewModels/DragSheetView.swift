@@ -8,6 +8,7 @@ import SwiftUI
  3.1. Related Layers:
  PresentationHostingController<Anyview>
          PresentationHostingController<Anyview>
+ 4. Make it Dark Mode Friendly
 
                         */
 
@@ -16,6 +17,7 @@ import SwiftUI
 var def_maxHeight: Double = 0.9
 var def_minHeight: Double = 0.3
 var initialHeightFactor: Double = 0.9
+var dismissal_velocity: CGFloat = 1000
 
 // Settings End
 
@@ -124,35 +126,39 @@ class DraggableSheetViewController<Content: CardContent>: UIViewController, UIGe
     }
     
     @objc func handleSheetPan(gesture: UIPanGestureRecognizer) {
-        let translation = gesture.translation(in: sheetView)
-        var newHeight = max(100, sheetViewHeightConstraint.constant - translation.y) // Prevents the sheet from going too low, adjust '100' as needed
+        let translation = gesture.translation(in: view)
+        let velocity = gesture.velocity(in: view)
 
-        // Apply the minimum height constraint to prevent the sheet from going too low
-        let minHeight: CGFloat = def_minHeight // Adjust this value as needed
-        newHeight = max(minHeight, newHeight)
-        
-        // Apply the maximum height constraint to prevent the sheet from going too high
-        let maxHeight: CGFloat = UIScreen.main.bounds.height * def_maxHeight // Adjust this value as needed
-        newHeight = min(maxHeight, newHeight)
-        
-        
-        
-        
-        // Apply a minimal animation for smoother height adjustment
-        UIView.animate(withDuration: 0.05, delay: 0, options: [.curveEaseOut], animations: {
-            self.sheetViewHeightConstraint.constant = newHeight
-            self.view.layoutIfNeeded()
-        }, completion: nil)
+        switch gesture.state {
+        case .changed:
+            // Calculate the new height based on the drag, but don't let it go below a minimum height
+            var newHeight = sheetViewHeightConstraint.constant - translation.y
+            newHeight = max(newHeight, def_minHeight)
+            newHeight = min(newHeight, UIScreen.main.bounds.height * def_maxHeight)
 
-        gesture.setTranslation(.zero, in: sheetView)
+            sheetViewHeightConstraint.constant = newHeight
+            gesture.setTranslation(.zero, in: view)
 
-        if gesture.state == .ended {
-            // Animate gently to settle the sheet after the drag ends
-            UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseOut], animations: {
-                self.view.layoutIfNeeded()
-            }, completion: nil)
+        case .ended:
+            // Use velocity and translation to decide what to do when the gesture ends
+            if velocity.y > dismissal_velocity {  // Velocity threshold for dismissal
+                self.dismiss(animated: true)
+            } else if velocity.y < -dismissal_velocity {
+                // Snap to full height if the swipe was upwards with significant velocity
+                UIView.animate(withDuration: 0.3) {
+                    self.sheetViewHeightConstraint.constant = UIScreen.main.bounds.height * def_maxHeight
+                    self.view.layoutIfNeeded()
+                }
+            } else {
+                // Optionally snap to nearest predefined height or allow it to stay at the current height
+                // You can implement your logic here based on your requirements
+            }
+
+        default:
+            break
         }
     }
+
 
 
     func animateToEndPosition() {
