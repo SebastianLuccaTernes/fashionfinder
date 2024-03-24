@@ -79,38 +79,6 @@ struct CropImageView: View {
     }
 }
 
-struct TransparentBackground: UIViewRepresentable {
-    func makeUIView(context: Context) -> UIView {
-        let view = UIView()
-        DispatchQueue.main.async {
-            view.superview?.superview?.backgroundColor = .clear
-        }
-        return view
-    }
-
-    func updateUIView(_ uiView: UIView, context: Context) {}
-}
-
-struct SubView: View {
-    @Binding var showing: Bool
-    
-    let width: CGFloat
-    let height: CGFloat
-    
-    var body: some View {
-        VStack {
-            Text("Hello World")
-            
-            Button {
-                showing = false
-            } label: {
-                Text("Close")
-            }
-        }
-        .frame(width: width, height: height)
-        .background(.teal)
-    }
-}
 
 
 // Gerne noch in neue Model machen, bin frustriert 

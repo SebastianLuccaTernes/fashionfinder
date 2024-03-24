@@ -13,9 +13,9 @@ import SwiftUI
 
 
 // Customizers - Settings
-var def_maxHeight: Double = 0.8
+var def_maxHeight: Double = 0.9
 var def_minHeight: Double = 0.3
-var initialHeightFactor: Double = 0.8
+var initialHeightFactor: Double = 0.9
 
 // Settings End
 
@@ -210,6 +210,18 @@ class DraggableSheetViewController<Content: CardContent>: UIViewController, UIGe
 
 
 
+// Structure to make UIKit Layers Transparent
+struct TransparentBackground: UIViewRepresentable {
+    func makeUIView(context: Context) -> UIView {
+        let view = UIView()
+        DispatchQueue.main.async {
+            view.superview?.superview?.backgroundColor = .clear
+        }
+        return view
+    }
+
+    func updateUIView(_ uiView: UIView, context: Context) {}
+}
 
 
 // Wrapper for your DraggableSheetViewController
