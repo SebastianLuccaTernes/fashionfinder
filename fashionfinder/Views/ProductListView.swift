@@ -23,20 +23,15 @@ struct ProductListView: View {
             }
             Spacer()
         }
-            VStack {
-                // Slider
-                DraggableSheetView(content: ListViewCardContent())
+  
+                    
+                    DraggableSheetView(content: ListViewCardContent())
                 
-            
-                    
-                    
-                    
-                    
-                    
+
                     Spacer()
                 
-                
-            }
+            
+            
             
         }
     }
@@ -44,6 +39,7 @@ struct ProductListView: View {
 // Content for the Slider
 struct ListViewCardContent: CardContent {
     let gridLayout = [GridItem(.flexible()), GridItem(.flexible())]
+    
 
     
     var view: AnyView {
@@ -60,15 +56,22 @@ struct ListViewCardContent: CardContent {
                                 .aspectRatio(contentMode: .fit)
                                 .frame(height: 200)
                                 .padding()
+                                .edgesIgnoringSafeArea(.all)
                         }
+                        
+                        
                     }
+
                 }
 
+
             }
+
 
         )
         
     }
+    
 }
 
 

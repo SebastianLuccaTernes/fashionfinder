@@ -18,8 +18,9 @@ struct CropImageView: View {
     
     var body: some View {
         ZStack {// Hintergrundbild oder Farbe
-            Color.white
+            Color.clear
                 .edgesIgnoringSafeArea(.all)
+            
             VStack {
                 HStack { // Title und back taste
                     // Header = See Header.swift
@@ -65,10 +66,49 @@ struct CropImageView: View {
             .sheet(isPresented: $isCropViewActive) {
                 TOCropViewWrapper(selectedImage: $selectedImage, isActive: $isCropViewActive)
             }
-            .sheet(isPresented: $showProductListSheet) {
+
+            
+            }
+            
+            .fullScreenCover(isPresented: $showProductListSheet) {
                 DraggableSheetView(content: ListViewCardContent())
+               .background(TransparentBackground()) // <--- Here
+                    .edgesIgnoringSafeArea(.all)
+
+        }
+    }
+}
+
+struct TransparentBackground: UIViewRepresentable {
+    func makeUIView(context: Context) -> UIView {
+        let view = UIView()
+        DispatchQueue.main.async {
+            view.superview?.superview?.backgroundColor = .clear
+        }
+        return view
+    }
+
+    func updateUIView(_ uiView: UIView, context: Context) {}
+}
+
+struct SubView: View {
+    @Binding var showing: Bool
+    
+    let width: CGFloat
+    let height: CGFloat
+    
+    var body: some View {
+        VStack {
+            Text("Hello World")
+            
+            Button {
+                showing = false
+            } label: {
+                Text("Close")
             }
         }
+        .frame(width: width, height: height)
+        .background(.teal)
     }
 }
 

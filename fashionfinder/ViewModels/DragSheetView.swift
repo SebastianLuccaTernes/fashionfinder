@@ -5,6 +5,9 @@ import SwiftUI
  1. Animations for Pangesture for example XXX
  2. Make Sheet fullscreen at the Bottom
  3. Remove second White BG Layer
+ 3.1. Related Layers:
+ PresentationHostingController<Anyview>
+         PresentationHostingController<Anyview>
 
                         */
 
@@ -12,6 +15,7 @@ import SwiftUI
 // Customizers - Settings
 var def_maxHeight: Double = 0.8
 var def_minHeight: Double = 0.3
+var initialHeightFactor: Double = 0.8
 
 // Settings End
 
@@ -40,6 +44,8 @@ class DraggableSheetViewController<Content: CardContent>: UIViewController, UIGe
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = UIColor.clear  // For the draggable sheet's root view
+
         setupUI()
         setupSheetView()  // Ensure this method initializes panGesture
         addContent()
@@ -53,7 +59,7 @@ class DraggableSheetViewController<Content: CardContent>: UIViewController, UIGe
     func setupUI() {
         // To be added Later...
         view.backgroundColor = UIColor.clear  // Set the background color to clear
-        view.backgroundColor = UIColor.black.withAlphaComponent(0.0)  // Semi-transparent black background
+
 
     }
     
@@ -72,7 +78,8 @@ class DraggableSheetViewController<Content: CardContent>: UIViewController, UIGe
         NSLayoutConstraint.activate([
             sheetView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
             sheetView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
-            sheetView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            sheetView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+
             
         ])
         //print("Gesture Recognizer added to dragIndicator")
@@ -82,19 +89,24 @@ class DraggableSheetViewController<Content: CardContent>: UIViewController, UIGe
     
         
         sheetViewHeightConstraint = sheetView.heightAnchor.constraint(equalToConstant: 200)
+        sheetViewHeightConstraint.constant = UIScreen.main.bounds.height * initialHeightFactor
         sheetViewHeightConstraint.isActive = true
+        sheetView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+
         
         sheetView.layer.cornerRadius = 30
         sheetView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         
+        
         // Drag Indicator setup
         let dragIndicator = UIView()
-        dragIndicator.backgroundColor = UIColor.systemGray3 // Choose a color that fits your design
+        dragIndicator.backgroundColor = UIColor.gray // Choose a color that fits your design
         dragIndicator.layer.cornerRadius = 3 // Adjust for a rounded appearance
         dragIndicator.isUserInteractionEnabled = true
 
         sheetView.addSubview(dragIndicator)
-        
+        //sheetView.bringSubviewToFront(dragIndicator)  // Make sure the dragIndicator is on top
+
         
         dragIndicator.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -108,8 +120,7 @@ class DraggableSheetViewController<Content: CardContent>: UIViewController, UIGe
   
 
 
-      //  let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handleSheetPan))
-      //  sheetView.addGestureRecognizer(panGesture)
+
     }
     
     @objc func handleSheetPan(gesture: UIPanGestureRecognizer) {
@@ -123,6 +134,9 @@ class DraggableSheetViewController<Content: CardContent>: UIViewController, UIGe
         // Apply the maximum height constraint to prevent the sheet from going too high
         let maxHeight: CGFloat = UIScreen.main.bounds.height * def_maxHeight // Adjust this value as needed
         newHeight = min(maxHeight, newHeight)
+        
+        
+        
         
         // Apply a minimal animation for smoother height adjustment
         UIView.animate(withDuration: 0.05, delay: 0, options: [.curveEaseOut], animations: {
@@ -165,17 +179,20 @@ class DraggableSheetViewController<Content: CardContent>: UIViewController, UIGe
         sheetView.addSubview(hostingController.view)
         hostingController.didMove(toParent: self)
         
-        
         hostingController.view.backgroundColor = UIColor.clear
+        
+           hostingController.view.translatesAutoresizingMaskIntoConstraints = false
+           // Set up constraints for hostingController.view...
+        
 
-
-        hostingController.view.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             hostingController.view.topAnchor.constraint(equalTo: sheetView.topAnchor),
             hostingController.view.leadingAnchor.constraint(equalTo: sheetView.leadingAnchor),
             hostingController.view.trailingAnchor.constraint(equalTo: sheetView.trailingAnchor),
             hostingController.view.bottomAnchor.constraint(equalTo: sheetView.bottomAnchor)
         ])
+        hostingController.view.backgroundColor = UIColor.clear  // Ensure it's transparent
+
 
         //sheetView.layer.borderWidth = 1
         //sheetView.layer.borderColor = UIColor.red.cgColor
@@ -193,6 +210,8 @@ class DraggableSheetViewController<Content: CardContent>: UIViewController, UIGe
 
 
 
+
+
 // Wrapper for your DraggableSheetViewController
 struct CustomCardContent: CardContent {
     var view: AnyView {
@@ -202,7 +221,6 @@ struct CustomCardContent: CardContent {
                 
                 Text("Product Listing")
             }
-                .background(Color.clear)
 
         )
         
@@ -211,7 +229,9 @@ struct CustomCardContent: CardContent {
 }
 
 
-#if DEBUG
+
+
+
 
 
 struct DraggableSheetView<Content: CardContent>: UIViewControllerRepresentable {
@@ -228,8 +248,14 @@ struct DraggableSheetView<Content: CardContent>: UIViewControllerRepresentable {
 
 //Below is just QOL Preview for Testing purposes!
 
-
+#if DEBUG
 #Preview {
-    DraggableSheetView(content: CustomCardContent())
+    ZStack {
+        DraggableSheetView(content: ListViewCardContent())
+            .edgesIgnoringSafeArea(.all)
+
+        
+    }
+    .background(Color.clear)  // Apply background color here
 }
 #endif
