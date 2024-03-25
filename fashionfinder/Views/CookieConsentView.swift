@@ -54,11 +54,13 @@ struct CookieConsentView: View {
 
 func acceptCookies() {
     UserDefaults.standard.set(true, forKey: "allowCookies")
+    UserDefaults.standard.set(true, forKey: "hasShownCookieConsent")
         // Set a cookie or save to local storage that consent is given
     }
     
 func rejectCookies() {
-        UserDefaults.standard.set(false, forKey: "allowCookies")
+    UserDefaults.standard.set(false, forKey: "allowCookies")
+    UserDefaults.standard.set(true, forKey: "hasShownCookieConsent")
     }
 }
 

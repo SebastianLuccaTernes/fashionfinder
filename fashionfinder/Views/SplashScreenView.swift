@@ -11,11 +11,17 @@ struct SplashScreenView: View {
     @State private var isActive = false
     @State private var size = 0.8
     @State private var opacity = 0.5
-    @State private var findrTextOffset = UIScreen.main.bounds.width // Start off-screen to the right
+    @State private var findrTextOffset = UIScreen.main.bounds.width 
+    // Start off-screen to the right
+    @AppStorage("hasShownCookieConsent") var hasShownCookieConsent: Bool = false
     
     var body: some View {
         if isActive {
-            StartView()
+            if hasShownCookieConsent {
+                StartView()
+            } else {
+                CookieConsentView()
+            }
         } else {
             VStack { // Use VStack for centering content
                 HStack(spacing: 0.1) {
