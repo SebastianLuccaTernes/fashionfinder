@@ -28,7 +28,7 @@ struct ProductListView: View {
                     DraggableSheetView(content: ListViewCardContent())
                 
 
-                    Spacer()
+                 
                 
             
             

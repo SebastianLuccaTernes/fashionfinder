@@ -27,30 +27,44 @@ struct CropImageView: View {
                     Header(content: { StartView() }) // Explicitly specify the closure type
                 }
                 
-                if let image = selectedImage { // if an image is picket it is shown here
+                if let image = selectedImage { // if an image is picked it is shown here
                     GeometryReader { geometry in
-                        Image(uiImage: image)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: geometry.size.width, height: geometry.size.width * 9 / 16)
-                            .border(Color.black, width: 1)
-                            .padding()
-                            .clipShape(Rectangle())
-                            .onTapGesture {
-                                self.isCropViewActive = true //activates sheet
-                            }
+                        // Create a black background rectangle
+                        Rectangle()
+                            .fill(Color.greyF)
+                            .frame(width: 300, height: 500 * 9 / 16) // Match the frame size with the image
+                            .overlay(
+                                Image(uiImage: image) // Overlay the image on top of the black rectangle
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                            )
+                            .border(Color.black, width: 1) // Set the border around the black rectangle
+                            .padding(.leading, 47)
+                            .padding(.top, 47)
+                            .clipShape(Rectangle()) // Clip the entire composition to a rectangle shape
                     }
+
+                            .onTapGesture {
+                                self.isCropViewActive = true //activates Cropping sheet
+                            }
+                    
                 } else {
-                    Image("Dog") // Picture Example
-                    //Error handling @Sebastian?
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 300, height: 1000 * 9 / 16)
-                        .border(Color.black, width: 1)
-                        .padding()
-                        .clipShape(Rectangle())
+                    Rectangle()
+                        .fill(Color.greyF)
+                        .frame(width: 300, height: 500 * 9 / 16) // Match the frame size with the image
+                        .overlay(
+                            Image("Dog") // Overlay the image on top of the black rectangle
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                        )
+                        .border(Color.black, width: 1) // Set the border around the black rectangle
+                        .padding(.leading)
+                        .padding(.top, 47)
+                        .clipShape(Rectangle()) // Clip the entire composition to a rectangle shape
+                
+
                         .onTapGesture {
-                            self.isCropViewActive = true //activates sheet
+                            self.isCropViewActive = true //activates Cropping sheet
                         }
                     
                 }
